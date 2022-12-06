@@ -1,21 +1,19 @@
 .searchbar {
-  width: 1200px;
-  /* min-height: 500px; */
-  margin-left: auto;
-  margin-right: auto;
+  position: fixed;
+  width: 100vw;
+  height: 53px;
+  background-color: rgb(88, 99, 255);
+  z-index: 5;
 }
 
 .form {
   position: fixed;
-  width: 1200px;
   padding-top: 12px;
   padding-bottom: 12px;
+  width: 100%;
   margin: 0 auto;
-
   display: flex;
   justify-content: center;
-  z-index: 5;
-  background-color: rgb(88, 99, 255);
   transition: transform 250ms linear;
 }
 
@@ -25,6 +23,7 @@
   width: 250px;
   border: none;
   outline: none;
+  margin-left: auto;
 }
 
 .form.hidden {
@@ -32,6 +31,7 @@
 }
 
 .search-btn {
+  margin-right: auto;
   padding: 7px;
   background-color: #ccc;
   color: #555;

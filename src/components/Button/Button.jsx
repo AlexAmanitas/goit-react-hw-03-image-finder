@@ -1,5 +1,5 @@
 // import PropTypes from 'prop-types';
-import { LoadMoreButton } from 'components/Button';
+import { LoadMoreButton } from './Button.styled';
 
 let pageNumber = 1;
 
@@ -10,9 +10,9 @@ const Button = props => {
   };
 
   return (
-    <button type="button" onClick={handleClick}>
+    <LoadMoreButton type="button" onClick={handleClick}>
       Load More
-    </button>
+    </LoadMoreButton>
   );
 };
 

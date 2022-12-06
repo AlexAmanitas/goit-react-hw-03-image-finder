@@ -19,28 +19,29 @@ export class App extends Component {
     pictures: [],
     isLoading: false,
     showModal: false,
+    loadMore: false,
     error: null,
     searchQuery: '',
     pageNumber: 1,
     modalURL: '',
   };
 
-  async componentDidMount() {
-    this.setState({ isLoading: true });
-    try {
-      const pictures = await fetchPictures(
-        this.state.searchQuery,
-        this.state.pageNumber
-      );
-      this.setState({ pictures });
-    } catch (error) {
-      this.setState({ error });
-      console.log(error);
-    } finally {
-      this.setState({ isLoading: false });
-      // console.log('dfegdh');
-    }
-  }
+  // async componentDidMount() {
+  //   this.setState({ isLoading: true });
+  //   try {
+  //     const pictures = await fetchPictures(
+  //       this.state.searchQuery,
+  //       this.state.pageNumber
+  //     );
+  //     this.setState({ pictures });
+  //   } catch (error) {
+  //     this.setState({ error });
+  //     console.log(error);
+  //   } finally {
+  //     this.setState({ isLoading: false });
+  //     // console.log('dfegdh');
+  //   }
+  // }
 
   async componentDidUpdate(prevProps, prevState) {
     if (
@@ -59,7 +60,10 @@ export class App extends Component {
           );
         }
 
-        this.setState({ pictures: [...this.state.pictures, ...pictures] });
+        this.setState({
+          pictures: [...this.state.pictures, ...pictures],
+          loadMore: true,
+        });
       } catch (error) {
         this.setState({ error });
         console.log(error);
@@ -88,20 +92,22 @@ export class App extends Component {
   };
 
   render() {
-    const { isLoading, pictures, showModal, modalURL } = this.state;
+    const { isLoading, pictures, showModal, modalURL, loadMore } = this.state;
     return (
       <div>
         <SearchBar onSubmit={this.formSubmitHandler} />
-        <ImageGallery>
-          {pictures.map(picture => (
-            <ImageGalleryItem
-              key={picture.id}
-              picture={picture}
-              onClick={this.imageClickHandler}
-            ></ImageGalleryItem>
-          ))}
-        </ImageGallery>
-        <Button onClick={this.loadMoreHandler}></Button>
+        <div className="gallery-wrap">
+          <ImageGallery>
+            {pictures.map(picture => (
+              <ImageGalleryItem
+                key={picture.id}
+                picture={picture}
+                onClick={this.imageClickHandler}
+              ></ImageGalleryItem>
+            ))}
+          </ImageGallery>
+          {loadMore && <Button onClick={this.loadMoreHandler}></Button>}
+        </div>
         {isLoading && <Loader />}
         {showModal && (
           <Modal onClose={this.toggleModal}>

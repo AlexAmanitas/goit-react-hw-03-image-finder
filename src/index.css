@@ -18,10 +18,19 @@ ul {
   padding: 0;
   margin: 0;
 }
+li {
+  list-style-type: none;
+}
 
-div[id='root'] {
+/* div[id='root'] {
+  width: 100vw;
+} */
+
+.gallery-wrap {
   width: 1200px;
-  /* min-height: 500px; */
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
