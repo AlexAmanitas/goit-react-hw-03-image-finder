@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import '../ImageGalleryItem/ImageGalleryItem.css';
 
@@ -26,4 +26,11 @@ const ImageGalleryItem = props => {
 
 export default ImageGalleryItem;
 
-// ({picture: { largeImageURL, previewURL, tags } })
+ImageGalleryItem.propTypes = {
+  pictures: PropTypes.shape({
+    largeImageURL: PropTypes.string.isRequired,
+    previewURL: PropTypes.string.isRequired,
+    tags: PropTypes.string.isRequired,
+  }),
+  onClick: PropTypes.func.isRequired,
+};

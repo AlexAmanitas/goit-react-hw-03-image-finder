@@ -18,13 +18,10 @@ ul {
   padding: 0;
   margin: 0;
 }
+
 li {
   list-style-type: none;
 }
-
-/* div[id='root'] {
-  width: 100vw;
-} */
 
 .gallery-wrap {
   width: 1200px;

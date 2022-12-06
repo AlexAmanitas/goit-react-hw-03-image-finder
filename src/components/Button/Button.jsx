@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { LoadMoreButton } from './Button.styled';
 
 const Button = props => {
@@ -17,3 +17,10 @@ const Button = props => {
 };
 
 export default Button;
+
+Button.propTypes = {
+  props: PropTypes.shape({
+    page: PropTypes.number.isRequired,
+    onClick: PropTypes.func.isRequired,
+  }),
+};

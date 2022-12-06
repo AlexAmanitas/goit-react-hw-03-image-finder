@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { ModalStyle } from './Modal.styled';
 import { Backdrop } from 'components/Loader/Loader.styled';
 
@@ -36,3 +36,6 @@ export default class Modal extends Component {
     );
   }
 }
+Modal.propTypes = {
+  onCose: PropTypes.func.isRequired,
+};
