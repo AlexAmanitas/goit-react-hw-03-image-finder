@@ -84,13 +84,12 @@ export class App extends Component {
   };
 
   imageClickHandler = url => {
-    this.setState({ isLoading: true, modalURL: url });
+    this.setState({ modalURL: url });
     this.toggleModal();
   };
 
   toggleModal = () => {
     this.setState(({ showModal }) => ({ showModal: !showModal }));
-    this.setState({ isLoading: false });
   };
 
   loadMoreHandler = pageNumber => {
