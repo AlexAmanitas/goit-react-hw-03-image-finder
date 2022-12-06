@@ -1,10 +1,10 @@
 // import PropTypes from 'prop-types';
 import { LoadMoreButton } from './Button.styled';
 
-let pageNumber = 1;
-
 const Button = props => {
+  let pageNumber = props.page;
   const handleClick = evt => {
+    console.log(evt);
     pageNumber += 1;
     props.onClick(pageNumber);
   };

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Notiflix from 'notiflix';
-import fetchPictures from './pictureApi';
+import fetchPictures from './pictureApiService';
 import SearchBar from 'components/Searchbar';
 import ImageGallery from 'components/ImageGallery';
-import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
+import ImageGalleryItem from 'components/ImageGalleryItem';
 import Button from 'components/Button';
 import Loader from 'components/Loader';
 import Modal from 'components/Modal';
@@ -54,15 +54,20 @@ export class App extends Component {
           this.state.searchQuery,
           this.state.pageNumber
         );
+        this.setState({ loadMore: true });
         if (pictures.length === 0) {
           Notiflix.Notify.failure(
             'Sorry, there are no images matching your search query. Please try again.'
           );
+          this.setState({ loadMore: false });
+        }
+
+        if (pictures.length < 12) {
+          this.setState({ loadMore: false });
         }
 
         this.setState({
           pictures: [...this.state.pictures, ...pictures],
-          loadMore: true,
         });
       } catch (error) {
         this.setState({ error });
@@ -79,12 +84,13 @@ export class App extends Component {
   };
 
   imageClickHandler = url => {
-    this.setState({ modalURL: url });
+    this.setState({ isLoading: true, modalURL: url });
     this.toggleModal();
   };
 
   toggleModal = () => {
     this.setState(({ showModal }) => ({ showModal: !showModal }));
+    this.setState({ isLoading: false });
   };
 
   loadMoreHandler = pageNumber => {
@@ -106,7 +112,12 @@ export class App extends Component {
               ></ImageGalleryItem>
             ))}
           </ImageGallery>
-          {loadMore && <Button onClick={this.loadMoreHandler}></Button>}
+          {loadMore && (
+            <Button
+              onClick={this.loadMoreHandler}
+              page={this.state.pageNumber}
+            ></Button>
+          )}
         </div>
         {isLoading && <Loader />}
         {showModal && (

@@ -6,6 +6,4 @@ export const ModalStyle = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 5px;
-
-  height: 100vmin;
 `;

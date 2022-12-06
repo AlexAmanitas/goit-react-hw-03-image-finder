@@ -1,33 +1,45 @@
 import React, { Component } from 'react';
+import { BsSearch } from 'react-icons/bs';
 import '../Searchbar/Searchbar.css';
 // import PropTypes from 'prop-types';
 
 export default class SearchBar extends Component {
-  state = { data: '' };
+  state = { query: '' };
 
   handleSubmit = evt => {
     evt.preventDefault();
-    // console.log(evt);
-    // console.log(this.props);
-    // this.setState({ data: evt.currentTarget.value });
-    this.props.onSubmit(evt.target[0].value);
-    input.value = '';
+    this.props.onSubmit(this.state.query);
+    this.resetForm();
   };
+
+  handleChange = evt => {
+    const input = evt.currentTarget.value;
+    this.setState({ query: input });
+  };
+
+  resetForm() {
+    this.setState({ query: '' });
+  }
 
   render() {
     return (
       <header className="searchbar">
         <form className="form" onSubmit={this.handleSubmit}>
+          <button type="submit" className="search-btn">
+            <span className="button-label">
+              <BsSearch />
+            </span>
+          </button>
+
           <input
             className="input"
             type="text"
-            autocomplete="off"
-            autofocus
+            autoComplete="off"
+            autoFocus
             placeholder="Search images and photos"
+            value={this.state.query}
+            onChange={this.handleChange}
           />
-          <button type="submit" className="search-btn">
-            <span className="button-label">Search</span>
-          </button>
         </form>
       </header>
     );
