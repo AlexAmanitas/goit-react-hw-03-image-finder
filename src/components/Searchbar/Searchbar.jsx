@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../Searchbar/Searchbar.css';
 // import PropTypes from 'prop-types';
 
 export default class SearchBar extends Component {
@@ -6,27 +7,26 @@ export default class SearchBar extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-    console.log(evt.target[1].value);
+    console.log(evt);
     console.log(this.props);
     // this.setState({ data: evt.currentTarget.value });
-    this.props.onSubmit(evt.target[1].value);
+    this.props.onSubmit(evt.target[0].value);
   };
 
   render() {
     return (
-      <header class="searchbar">
-        <form class="form" onSubmit={this.handleSubmit}>
-          <button type="submit" class="button">
-            <span class="button-label">Search</span>
-          </button>
-
+      <header className="searchbar">
+        <form className="form" onSubmit={this.handleSubmit}>
           <input
-            class="input"
+            className="input"
             type="text"
             autocomplete="off"
             autofocus
             placeholder="Search images and photos"
           />
+          <button type="submit" className="search-btn">
+            <span className="button-label">Search</span>
+          </button>
         </form>
       </header>
     );

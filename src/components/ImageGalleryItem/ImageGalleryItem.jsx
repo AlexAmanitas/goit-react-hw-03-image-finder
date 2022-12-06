@@ -1,11 +1,29 @@
 // import PropTypes from 'prop-types';
 
-const ImageGalleryItem = ({ src, alt }) => {
+import '../ImageGalleryItem/ImageGalleryItem.css';
+
+const ImageGalleryItem = props => {
+  const { largeImageURL, previewURL, tags } = props.picture;
+
+  const handleImgClick = evt => {
+    console.log('object', largeImageURL);
+    props.onClick(largeImageURL);
+  };
+
   return (
-    <li class="gallery-item">
-      <img src={src} alt={alt} />
+    <li className="photo-card">
+      <div className="img-wrap">
+        <img
+          className="image"
+          src={previewURL}
+          alt={tags}
+          onClick={handleImgClick}
+        />
+      </div>
     </li>
   );
 };
 
 export default ImageGalleryItem;
+
+// ({picture: { largeImageURL, previewURL, tags } })
