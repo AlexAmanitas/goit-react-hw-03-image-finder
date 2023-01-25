@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useEffect } from 'react';
 
 const API_KEY = '30451625-24b88a788a5d1862c6d5c9df8';
 
@@ -15,7 +14,7 @@ async function fetchPictures(searchQuery, pageNumber) {
     per_page: 12,
   });
   const data = await axios.get(`${base_url}${searchParams}`);
-  // console.log(data.data.hits, pageNumber);
+
   return data.data.hits;
 }
 
