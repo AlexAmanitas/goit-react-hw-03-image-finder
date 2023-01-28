@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import { LoadMoreButton } from './Button.styled';
 
-const Button = props => {
-  let pageNumber = props.page;
+const Button = ({ page, onClick }) => {
+  let pageNumber = page;
   const handleClick = evt => {
     console.log(evt);
     pageNumber += 1;
-    props.onClick(pageNumber);
+    onClick(pageNumber);
   };
 
   return (
@@ -19,8 +19,6 @@ const Button = props => {
 export default Button;
 
 Button.propTypes = {
-  props: PropTypes.shape({
-    page: PropTypes.number.isRequired,
-    onClick: PropTypes.func.isRequired,
-  }),
+  page: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
