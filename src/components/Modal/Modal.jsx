@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
-import { ModalStyle } from './Modal.styled';
-import { Backdrop } from 'components/Loader/Loader.styled';
+import './Modal.css';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -29,9 +28,9 @@ export default class Modal extends Component {
 
   render() {
     return createPortal(
-      <Backdrop onClick={this.handleBackdropClick}>
-        <ModalStyle>{this.props.children}</ModalStyle>
-      </Backdrop>,
+      <div onClick={this.handleBackdropClick} className="backdrop">
+        <div className="modal">{this.props.children}</div>
+      </div>,
       modalRoot
     );
   }

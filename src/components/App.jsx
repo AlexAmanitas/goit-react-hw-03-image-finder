@@ -73,15 +73,18 @@ export class App extends Component {
 
   render() {
     const { isLoading, pictures, showModal, modalURL, loadMore } = this.state;
+    console.log(pictures);
     return (
       <div>
         <SearchBar onSubmit={this.formSubmitHandler} />
         <div className="gallery-wrap">
-          <ImageGallery
-            pictures={pictures}
-            onClick={this.imageClickHandler}
-          ></ImageGallery>
-          {loadMore && (
+          {pictures.length && (
+            <ImageGallery
+              pictures={pictures}
+              onClick={this.imageClickHandler}
+            ></ImageGallery>
+          )}
+          {loadMore && !isLoading && (
             <Button
               onClick={this.loadMoreHandler}
               page={this.state.pageNumber}

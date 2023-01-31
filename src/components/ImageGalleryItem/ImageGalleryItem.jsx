@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import '../ImageGalleryItem/ImageGalleryItem.css';
+import './ImageGalleryItem.css';
 
 const ImageGalleryItem = ({
   picture: { largeImageURL, previewURL, tags },
